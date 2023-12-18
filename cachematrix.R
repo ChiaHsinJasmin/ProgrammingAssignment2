@@ -1,36 +1,34 @@
-# Programming Assignment 2: Lexical Scoping
+#Programming Assignment 2: Lexical Scoping
 
 ## Functions cacheSolve could cache the inverse of the matrix from makeCacheMatrix
 
 ## makeCacheMatrix should be able to create a specific matrix and cache its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
-        library(matlib)
-        inv <- NULL
+        inverse <- NULL
         set <- function(y) {
                 x <<- y
-                inv <<- NULL
+                inverse <<- NULL
         }
         get <- function() x
-        setInverse <- function(Inverse) inv <<- Inverse
-        getInverse <- function() inv
+        setinverse <- function(Inverse) inverse <<- Inverse
+        getinverse <- function() inverse
         list(set = set, get = get,
-             setInverse = setInverse,
-             getInverse = getInverse)
+             setinverse = setinverse,
+             getinverse = getinverse)
 }
 
 ## cacheSolve should be able to compute the inverse of the matrix returned by makeCacheMatrix
 ## It should retrieve the inverse from the cache if the inverse has been calculated by makeCacheMatrix
 
 cacheSolve <- function(x, ...) {
-        library(matlib)
-        inv <- x$getInverse()
-        if(!is.null(inv)) {
+        inverse <- x$getinverse()
+        if(!is.null(inverse)) {
                 message("getting cached data")
-                return(inv)
+                return(inverse)
         }
         data <- x$get()
-        inv <- solve(data, ...)
-        x$setInverse(inv)
-        inv
+        inverse <- solve(data, ...)
+        x$setinverse(inverse)
+        inverse
 }
